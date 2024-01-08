@@ -5,26 +5,21 @@ from langchain.schema import StrOutputParser
 from langchain.vectorstores import Chroma
 from langchain_core.runnables import RunnablePassthrough
 from langchain_core.messages import AIMessage, HumanMessage
-
-
 import dotenv
-
 from langchain_core.prompts import ChatPromptTemplate
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 dotenv.load_dotenv()
 
 
 # loading from disk
-from langchain.embeddings.openai import OpenAIEmbeddings
-
 embedding = OpenAIEmbeddings()
 vectorstore = Chroma(persist_directory="./codemash_db", embedding_function=embedding)
 
 retriever = vectorstore.as_retriever()
 
 print(retriever)
-
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 contextualize_q_system_prompt = """Given a chat history and the latest user question \
 which might reference context in the chat history, formulate a standalone question \
