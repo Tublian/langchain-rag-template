@@ -75,6 +75,9 @@ def contextualized_question(input: dict):
         return input["question"]
 
 
+# for debugging purposes
+# (prompt | model).invoke(input)
+
 rag_chain = (
     RunnablePassthrough.assign(
         context=contextualized_question | retriever_from_llm | format_docs

@@ -23,8 +23,6 @@ retriever = vectorstore.as_retriever()
 
 print(retriever)
 
-# prompt = hub.pull("rlm/rag-prompt")
-
 chat_template = ChatPromptTemplate.from_messages(
     [
         (
